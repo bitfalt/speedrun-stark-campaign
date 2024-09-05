@@ -59,6 +59,8 @@ pub mod Staker {
     ) {
         self.eth_token_dispatcher.write(IERC20CamelDispatcher { contract_address: eth_contract });
         self.external_contract_address.write(external_contract_address);
+        // Checkpoint 2
+        self.deadline.write(get_block_timestamp() + 60);
     // ToDo Checkpoint 2: Set the deadline to 60 seconds from now. Implement your code here.
 
     }
@@ -70,7 +72,21 @@ pub mod Staker {
         fn stake(
             ref self: ContractState, amount: u256
         ) { // Note: In UI and Debug contract `sender` should call `approve`` before to `transfer` the amount to the staker contract
-        //self.emit(Stake { sender, amount }); // ToDo Checkpoint 1: Uncomment to emit the Stake event
+            // Assert staking period has not ended
+            assert(self.time_left() != 0, 'Staking period ended');
+            let sender = get_caller_address();
+            let contract_address = get_contract_address();
+            let token = self.eth_token_dispatcher.read();
+            // Transfer ETH from sender to contract (stake)
+            token.transferFrom(sender, contract_address, amount);
+            // Update balance
+            let new_balance = self.balances(sender) + amount;
+            // Update user balance
+            self.balances.write(sender, new_balance);
+            // Update contract balance (total)
+            self.balances.write(contract_address, self.total_balance() + amount);
+            // Emit event
+            self.emit(Stake { sender, amount }); // ToDo Checkpoint 1: Uncomment to emit the Stake event
         }
 
         // Function to execute the transfer or allow withdrawals after the deadline
@@ -79,10 +95,37 @@ pub mod Staker {
         // Otherwise, we should call `open_for_withdraw` function
         // ToDo Checkpoint 3: Assert that the staking period has ended
         // ToDo Checkpoint 3: Protect the function calling `not_completed` function before the execution
-        fn execute(ref self: ContractState) {}
+        fn execute(ref self: ContractState) {
+            // Verifications
+            assert(self.time_left() == 0, 'Deadline has not passed');
+            self.not_completed();
+            // ERC20 Dispatcher
+            let token = self.eth_token_dispatcher.read();
+            // Get staked amount
+            let staked_amount = token.balanceOf(get_contract_address());
+
+            if staked_amount >= self.threshold() {
+                self.complete_transfer(staked_amount);                
+            } else {
+                self.open_for_withdraw.write(true);
+            }
+        }
 
         // ToDo Checkpoint 3: Implement your `withdraw` function here
-        fn withdraw(ref self: ContractState) {}
+        fn withdraw(ref self: ContractState) {
+            // Verifications
+            assert(self.open_for_withdraw(), 'Withdraws not opened');
+            self.not_completed();
+            let sender = get_caller_address();
+            let sender_balance = self.balances(sender);
+            let token = self.eth_token_dispatcher();
+            // ERC20 to move tokens
+            token.approve(sender, sender_balance);
+            token.transfer(sender, sender_balance);
+            // Update balances
+            self.balances.write(sender, self.balances(sender) - sender_balance);
+            self.balances.write(get_contract_address(), self.total_balance() - sender_balance);
+        }
 
         fn balances(self: @ContractState, account: ContractAddress) -> u256 {
             self.balances.read(account)
@@ -114,11 +157,17 @@ pub mod Staker {
         // Read Function to check if the external contract is completed. 
         // ToDo Checkpoint 3: Implement your completed function here
         fn completed(self: @ContractState) -> bool {
-            false
+            let external_contract = IExampleExternalContractDispatcher{ contract_address: self.example_external_contract()};
+            external_contract.completed()
         }
         // ToDo Checkpoint 2: Implement your time_left function here
         fn time_left(self: @ContractState) -> u64 {
-            0
+            // Get time left for staking
+            if get_block_timestamp() >= self.deadline() {
+                0
+            } else {
+                self.deadline() - get_block_timestamp()
+            }
         }
     }
 
@@ -131,8 +180,21 @@ pub mod Staker {
         fn complete_transfer(
             ref self: ContractState, amount: u256
         ) { // Note: Staker contract should approve to transfer the staked_amount to the external contract
+            let token = self.eth_token_dispatcher();
+            let external_contract_address = self.example_external_contract();
+            let external_contract = IExampleExternalContractDispatcher{ contract_address: external_contract_address};
+            // ERC20 Token functions to send tokens
+            token.approve(external_contract_address, amount);
+            token.transfer(external_contract_address, amount);
+            // Call complete function in external contract
+            external_contract.complete();
+
         }
         // ToDo Checkpoint 3: Implement your not_completed function here
-        fn not_completed(ref self: ContractState) {}
+        fn not_completed(ref self: ContractState) {
+            let external_contract = IExampleExternalContractDispatcher{ contract_address: self.example_external_contract()};
+            let completed = external_contract.completed();
+            assert(!completed, 'External contract completed');
+        }
     }
 }
