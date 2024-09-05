@@ -1,6 +1,6 @@
 # Speedrun Stark Campaign Info
 
-Deployed contract address in Sepolia: []()
+Deployed contract address in Sepolia: [0x00ebb931c9847ed2b1edd54975a992f1b43d05fdfe9e353c6bab37fce4243149](https://sepolia.voyager.online/contract/0x00eBb931C9847ed2B1eDD54975a992f1B43D05fDfE9E353c6BAB37fCe4243149)
 
 Deployed website: [Website]()
 
