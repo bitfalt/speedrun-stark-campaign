@@ -86,7 +86,10 @@ pub mod Staker {
             // Update contract balance (total)
             self.balances.write(contract_address, self.total_balance() + amount);
             // Emit event
-            self.emit(Stake { sender, amount }); // ToDo Checkpoint 1: Uncomment to emit the Stake event
+            self
+                .emit(
+                    Stake { sender, amount }
+                ); // ToDo Checkpoint 1: Uncomment to emit the Stake event
         }
 
         // Function to execute the transfer or allow withdrawals after the deadline
@@ -105,7 +108,7 @@ pub mod Staker {
             let staked_amount = token.balanceOf(get_contract_address());
 
             if staked_amount >= self.threshold() {
-                self.complete_transfer(staked_amount);                
+                self.complete_transfer(staked_amount);
             } else {
                 self.open_for_withdraw.write(true);
             }
@@ -157,7 +160,9 @@ pub mod Staker {
         // Read Function to check if the external contract is completed. 
         // ToDo Checkpoint 3: Implement your completed function here
         fn completed(self: @ContractState) -> bool {
-            let external_contract = IExampleExternalContractDispatcher{ contract_address: self.example_external_contract()};
+            let external_contract = IExampleExternalContractDispatcher {
+                contract_address: self.example_external_contract()
+            };
             external_contract.completed()
         }
         // ToDo Checkpoint 2: Implement your time_left function here
@@ -182,17 +187,20 @@ pub mod Staker {
         ) { // Note: Staker contract should approve to transfer the staked_amount to the external contract
             let token = self.eth_token_dispatcher();
             let external_contract_address = self.example_external_contract();
-            let external_contract = IExampleExternalContractDispatcher{ contract_address: external_contract_address};
+            let external_contract = IExampleExternalContractDispatcher {
+                contract_address: external_contract_address
+            };
             // ERC20 Token functions to send tokens
             token.approve(external_contract_address, amount);
             token.transfer(external_contract_address, amount);
             // Call complete function in external contract
             external_contract.complete();
-
         }
         // ToDo Checkpoint 3: Implement your not_completed function here
         fn not_completed(ref self: ContractState) {
-            let external_contract = IExampleExternalContractDispatcher{ contract_address: self.example_external_contract()};
+            let external_contract = IExampleExternalContractDispatcher {
+                contract_address: self.example_external_contract()
+            };
             let completed = external_contract.completed();
             assert(!completed, 'External contract completed');
         }
