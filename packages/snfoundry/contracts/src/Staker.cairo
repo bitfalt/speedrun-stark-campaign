@@ -73,6 +73,7 @@ pub mod Staker {
             ref self: ContractState, amount: u256
         ) { // Note: In UI and Debug contract `sender` should call `approve`` before to `transfer` the amount to the staker contract
             // Assert staking period has not ended
+            //assert(get_block_timestamp() <= self.deadline(), 'Staking period ended');
             assert(self.time_left() != 0, 'Staking period ended');
             let sender = get_caller_address();
             let contract_address = get_contract_address();
@@ -100,7 +101,9 @@ pub mod Staker {
         // ToDo Checkpoint 3: Protect the function calling `not_completed` function before the execution
         fn execute(ref self: ContractState) {
             // Verifications
+            //assert(get_block_timestamp() >= self.deadline(), 'Deadline has not passed');
             assert(self.time_left() == 0, 'Deadline has not passed');
+            assert(!self.open_for_withdraw(), 'Withdraws already opened');
             self.not_completed();
             // ERC20 Dispatcher
             let token = self.eth_token_dispatcher.read();
@@ -117,8 +120,8 @@ pub mod Staker {
         // ToDo Checkpoint 3: Implement your `withdraw` function here
         fn withdraw(ref self: ContractState) {
             // Verifications
-            assert(self.open_for_withdraw(), 'Withdraws not opened');
             self.not_completed();
+            assert(self.open_for_withdraw(), 'Withdraws not opened');
             let sender = get_caller_address();
             let sender_balance = self.balances(sender);
             let token = self.eth_token_dispatcher();
@@ -190,8 +193,7 @@ pub mod Staker {
             let external_contract = IExampleExternalContractDispatcher {
                 contract_address: external_contract_address
             };
-            // ERC20 Token functions to send tokens
-            token.approve(external_contract_address, amount);
+            self.balances.write(get_contract_address(), self.total_balance() - amount);
             token.transfer(external_contract_address, amount);
             // Call complete function in external contract
             external_contract.complete();
