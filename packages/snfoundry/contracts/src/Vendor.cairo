@@ -54,7 +54,11 @@ mod Vendor {
 
     //  ToDo Checkpoint 3: Define the event SellTokens
     #[derive(Drop, starknet::Event)]
-    struct SellTokens {}
+    struct SellTokens {
+        seller: ContractAddress,
+        tokens_amount: u256,
+        eth_amount: u256,
+    }
 
     #[constructor]
     // Todo Checkpoint 2: Edit the constructor to initialize the owner of the contract.
@@ -109,7 +113,32 @@ mod Vendor {
         }
 
         // ToDo Checkpoint 3: Implement your function sell_tokens here.
-        fn sell_tokens(ref self: ContractState, amount_tokens: u256) {}
+        fn sell_tokens(ref self: ContractState, amount_tokens: u256) {
+            // Calculate the amount of ETH used to buy the tokens
+            let eth_amount_wei = amount_tokens / self.tokens_per_eth();
+            // Check seller has enough tokens to sell
+            let seller = get_caller_address();
+            let token = self.your_token.read();
+            let token_balance = token.balance_of(seller);
+            assert(token_balance >= amount_tokens, 'Seller not enough balance');
+            // Check seller has approved the contract to transfer the tokens
+            let token_allowance = token.allowance(seller, get_contract_address());
+            assert(token_allowance >= amount_tokens, 'Allowance is not enough');
+            // Transfer tokens from the seller to the contract
+            token.transfer_from(seller, get_contract_address(), amount_tokens);
+
+            // Transfer ETH from the contract to the seller
+            let eth_token = self.eth_token.read();
+            // Check contract has enough ETH to sell
+            let eth_balance = eth_token.balanceOf(get_contract_address());
+            assert(eth_balance >= eth_amount_wei, 'Contract not enough balance');
+            // Approve to transfer the ETH
+            eth_token.approve(get_contract_address(), eth_amount_wei);  
+            eth_token.transferFrom(get_contract_address(), seller, eth_amount_wei);
+
+            // Emit the SellTokens event
+            self.emit(SellTokens { seller: seller, tokens_amount: amount_tokens, eth_amount: eth_amount_wei });
+        }
 
         // ToDo Checkpoint 2: Modify to return the amount of tokens per 1 ETH.
         fn tokens_per_eth(self: @ContractState) -> u256 {

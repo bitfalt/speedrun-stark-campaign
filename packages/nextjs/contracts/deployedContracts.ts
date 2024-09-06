@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourToken: {
       address:
-        "0x4cb80851962159a6e9002b9113a23b3652b875129f269a78e711e3adff6d6ad",
+        "0x20102b477d5c9226b0d5b47fdda3351e79022d7ec82597aa56690739d0629e5",
       abi: [
         {
           type: "impl",
@@ -311,7 +311,7 @@ const deployedContracts = {
     },
     Vendor: {
       address:
-        "0x36210c2a930cad0294d46d43881238cfdec3a39a666c4ba849fb1c48f51db6b",
+        "0x75550ee15ceccd94d9e411f425d7a7762437cf7ef8dbc07306736b5bb1a1a63",
       abi: [
         {
           type: "impl",
@@ -538,7 +538,23 @@ const deployedContracts = {
           type: "event",
           name: "contracts::Vendor::Vendor::SellTokens",
           kind: "struct",
-          members: [],
+          members: [
+            {
+              name: "seller",
+              type: "core::starknet::contract_address::ContractAddress",
+              kind: "data",
+            },
+            {
+              name: "tokens_amount",
+              type: "core::integer::u256",
+              kind: "data",
+            },
+            {
+              name: "eth_amount",
+              type: "core::integer::u256",
+              kind: "data",
+            },
+          ],
         },
         {
           type: "event",
@@ -564,7 +580,7 @@ const deployedContracts = {
         },
       ],
       classHash:
-        "0x1307c9e085ef46a1164eeefa3f2cf2fe6639e80e6cf33e857281c4182cd8005",
+        "0x72f11775b1e188d384d2c2b7f568bedcb2bd3d7305f72a8062ca19f70f09f1e",
     },
   },
 } as const;

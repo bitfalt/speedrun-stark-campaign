@@ -192,7 +192,7 @@ const TokenVendor: NextPage = () => {
         )}
 
         {/* ToDo Checkpoint 3: Uncomment Sell Tokens */}
-        {/* {!!yourTokenBalance && (
+        {!!yourTokenBalance && (
           <div className="flex flex-col items-center space-y-4 bg-base-100 border-8 border-secondary rounded-xl p-6 mt-8 w-full max-w-lg">
             <div className="text-xl">Sell tokens</div>
             <div>{Number(tokensPerEth)} tokens per ETH</div>
@@ -201,7 +201,6 @@ const TokenVendor: NextPage = () => {
                 placeholder="amount of tokens to sell"
                 value={tokensToSell}
                 onChange={(value) => setTokensToSell(value as string)}
-                disabled={isApproved}
                 disableMultiplyBy1e18
               />
             </div>
@@ -215,7 +214,7 @@ const TokenVendor: NextPage = () => {
               </button>
           </div>
         </div> 
-		)}*/}
+		)}
       </div>
     </>
   );
