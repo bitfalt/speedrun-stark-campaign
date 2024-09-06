@@ -1,5 +1,5 @@
 # Speedrun Stark Campaign Info
-
+Changed YourToken total supply to 20 000.
 ## YourToken
 YourToken: [0x00e6c2e9ab4f444a2469e7fabd21898440c13f314e92b8672988806c5c45ef18](https://sepolia.voyager.online/contract/0x00e6c2e9ab4f444a2469e7fabd21898440c13f314e92b8672988806c5c45ef18)
 ## Vendor
