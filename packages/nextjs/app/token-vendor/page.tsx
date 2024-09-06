@@ -212,9 +212,9 @@ const TokenVendor: NextPage = () => {
               >
                 Sell Tokens
               </button>
+            </div>
           </div>
-        </div> 
-		)}
+        )}
       </div>
     </>
   );
