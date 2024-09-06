@@ -1,6 +1,18 @@
 # Speedrun Stark Campaign
 
-See full details [here](./SpeedrunStarkPrizeCampaign.pdf).
+Each challenge is a branch simulating the behaviour in the main repo. For easier access to the different branches click the following link:
+
+[Challenge 0](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-0-simple-nft)
+[Challenge 0 Website Vercel](https://simple-nft-snowy-pi.vercel.app/)
+[Challenge 1](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-1-decentralized-staking)
+[Challenge 1 Website Vercel](https://decentralized-staking-jade.vercel.app/)
+[Challenge 2](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-2-token-vendor)
+[Challenge 2 Website Vercel](https://token-vendor-pi.vercel.app/)
+[Challenge 3](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-3-dice-game)
+[Challenge 3 Website Vercel](https://dice-game-eight-rho.vercel.app/)
+
+## Mainnet Wallet Address
+Mainnet wallet address: [0x05de88d79a1b46c483f3d35354441cd4e8f06384de977761e61db4858dda5156](https://voyager.online/contract/0x05de88d79a1b46c483f3d35354441cd4e8f06384de977761e61db4858dda5156)
 
 # 🏗 Scaffold-Stark Challenges
 
