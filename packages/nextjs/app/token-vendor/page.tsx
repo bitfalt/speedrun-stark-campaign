@@ -125,7 +125,7 @@ const TokenVendor: NextPage = () => {
             </div>
           </div>
           {/* ToDo Checkpoint 2: Vendor Balances */}
-          {/*<hr className="w-full border-secondary my-3" />
+          <hr className="w-full border-secondary my-3" />
           <div>
             Vendor token balance:{" "}
             <div className="inline-flex items-center justify-center">
@@ -141,11 +141,11 @@ const TokenVendor: NextPage = () => {
               {parseFloat(formatEther(vendorContractBalance?.toString() || 0n))}
             </span>
             <span className="font-bold ml-1">{ethSymbol}</span>
-          </div>*/}
+          </div>
         </div>
 
         {/* ToDo Checkpoint 2: Uncomment Buy Tokens */}
-        {/*
+        {
           <div className="flex flex-col items-center space-y-4 bg-base-100 border-8 border-secondary rounded-xl p-6 mt-8 w-full max-w-lg">
             <div className="text-xl">Buy tokens</div>
             <div>{Number(tokensPerEth)} tokens per ETH</div>
@@ -164,7 +164,7 @@ const TokenVendor: NextPage = () => {
               Buy Tokens
             </button>
           </div>
-        */}
+        }
 
         {!!yourTokenBalance && (
           <div className="flex flex-col items-center space-y-4 bg-base-100 border-8 border-secondary rounded-xl p-6 mt-8 w-full max-w-lg">
