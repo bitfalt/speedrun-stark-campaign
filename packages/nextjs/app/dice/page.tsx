@@ -76,14 +76,14 @@ const DiceGame: NextPage = () => {
     useScaffoldEventHistory({
       contractName: "DiceGame",
       eventName: "contracts::DiceGame::DiceGame::Roll",
-      fromBlock: BigInt(0n),
+      fromBlock: BigInt(163457n),
       watch: true,
     });
   const { data: winnerHistoryData, isLoading: winnerHistoryLoading } =
     useScaffoldEventHistory({
       contractName: "DiceGame",
       eventName: "contracts::DiceGame::DiceGame::Winner",
-      fromBlock: BigInt(0n),
+      fromBlock: BigInt(163457n),
       watch: true,
     });
 
