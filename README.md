@@ -90,7 +90,7 @@ yarn start
 > You have to mint **2000** (\* 10 \*\* 18) `YourToken` token (it is also named `GLD` token) to your frontend address using the `constructor()`. In devnet, by default we choose the first pre-deployed account that `yarn chain` generate for us to deploy the contracts:
 
 ```bash
-| Account address |  0x64b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691 
+| Account address |  0x64b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691
 ```
 
 In order to complete this checkpoint, you need to connect to devnet using the same address. In testnet, you can use your own address to deploy the contracts. Edit the .env file in the `snfoundry` package to set the `ACCOUNT_ADDRESS_SEPOLIA` to your own address.
@@ -143,24 +143,24 @@ Uncomment the `Buy Tokens` sections in `packages/nextjs/app/token-vendor/page.ts
 > ✏️ Then, uncomment `packages/snfoundry/scripts-ts/deploy.ts` to transfer 1000 tokens to vendor address.
 
 ```ts
-  await deployer.execute(
-    [
-      {
-        contractAddress: your_token.address,
-        calldata: [
-          vendor.address,
-          {
-            low:  1_000_000_000_000_000_000_000n, //1000 * 10^18
-            high: 0,
-          }
-        ],
-        entrypoint: "transfer",
-      }
-    ],
+await deployer.execute(
+  [
     {
-      maxFee: 1e18
-    }
-  );
+      contractAddress: your_token.address,
+      calldata: [
+        vendor.address,
+        {
+          low: 1_000_000_000_000_000_000_000n, //1000 * 10^18
+          high: 0,
+        },
+      ],
+      entrypoint: "transfer",
+    },
+  ],
+  {
+    maxFee: 1e18,
+  },
+);
 ```
 
 > 🔎 Look in `packages/nextjs/app/token-vendor/page.tsx` for code to uncomment to display the Vendor ETH and Token balances.
@@ -191,15 +191,15 @@ In `Vendor.cairo` you will need to add one more input parameter to setup the `ow
 > ✏️ Then, edit `packages/snfoundry/scripts-ts/deploy.ts` to deploy the `Vendor` contract with the `owner` address.
 
 ```ts
- vendor = await deployContract({
-    contract: "Vendor",
-    constructorArgs: {
-      eth_token_address:
+vendor = await deployContract({
+  contract: "Vendor",
+  constructorArgs: {
+    eth_token_address:
       "0x49D36570D4E46F48E99674BD3FCC84644DDD6B96F7C741B1562B82F9E004DC7",
-      your_token_address: your_token.address,
-      owner: deployer.address,
-    },
-  });
+    your_token_address: your_token.address,
+    owner: deployer.address,
+  },
+});
 ```
 
 ### 🥅 Goals

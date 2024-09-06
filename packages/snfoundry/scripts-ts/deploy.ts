@@ -19,15 +19,15 @@ const deployScript = async (): Promise<void> => {
   // ToDo Checkpoint 2: Uncomment Vendor deploy lines
   // ToDo Checkpoint 2: Add owner to Vendor constructor
 
-    vendor = await deployContract({
-      contract: "Vendor",
-      constructorArgs: {
-        eth_token_address:
-          "0x49D36570D4E46F48E99674BD3FCC84644DDD6B96F7C741B1562B82F9E004DC7",
-        your_token_address: your_token.address,
-        owner: deployer.address,
-      },
-    });
+  vendor = await deployContract({
+    contract: "Vendor",
+    constructorArgs: {
+      eth_token_address:
+        "0x49D36570D4E46F48E99674BD3FCC84644DDD6B96F7C741B1562B82F9E004DC7",
+      your_token_address: your_token.address,
+      owner: deployer.address,
+    },
+  });
 };
 
 // ToDo Checkpoint 2: Uncomment transferScript to transfer 1000 GLD tokens to VendorContract
@@ -48,7 +48,7 @@ const transferScript = async (): Promise<void> => {
     ],
     {
       maxFee: 1e15,
-    }
+    },
   );
 };
 
