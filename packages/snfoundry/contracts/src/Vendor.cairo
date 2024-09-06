@@ -76,16 +76,14 @@ mod Vendor {
     #[abi(embed_v0)]
     impl VendorImpl of IVendor<ContractState> {
         // ToDo Checkpoint 2: Implement your function buy_tokens here.
-        fn buy_tokens(
-            ref self: ContractState, eth_amount_wei: u256
-        ) {
+        fn buy_tokens(ref self: ContractState, eth_amount_wei: u256) {
             // Calculate the amount of tokens to transfer
             let tokens_to_transfer: u256 = (eth_amount_wei * self.tokens_per_eth());
             let token = self.your_token.read();
             // Check vendor has enough tokens to sell
             let tokens_available = token.balance_of(get_contract_address());
-            assert(tokens_to_transfer <= tokens_available, 'Vendor not enough balance'); 
-            
+            assert(tokens_to_transfer <= tokens_available, 'Vendor not enough balance');
+
             // Get the caller's address
             let recipient = get_caller_address();
 
@@ -100,7 +98,14 @@ mod Vendor {
             token.transfer(recipient, tokens_to_transfer);
 
             // Emit the BuyTokens event
-            self.emit(BuyTokens { buyer: recipient, eth_amount: eth_amount_wei, tokens_amount: tokens_to_transfer });
+            self
+                .emit(
+                    BuyTokens {
+                        buyer: recipient,
+                        eth_amount: eth_amount_wei,
+                        tokens_amount: tokens_to_transfer
+                    }
+                );
         }
 
         // ToDo Checkpoint 2: Implement your function withdraw here.
@@ -133,11 +138,16 @@ mod Vendor {
             let eth_balance = eth_token.balanceOf(get_contract_address());
             assert(eth_balance >= eth_amount_wei, 'Contract not enough balance');
             // Approve to transfer the ETH
-            eth_token.approve(get_contract_address(), eth_amount_wei);  
+            eth_token.approve(get_contract_address(), eth_amount_wei);
             eth_token.transferFrom(get_contract_address(), seller, eth_amount_wei);
 
             // Emit the SellTokens event
-            self.emit(SellTokens { seller: seller, tokens_amount: amount_tokens, eth_amount: eth_amount_wei });
+            self
+                .emit(
+                    SellTokens {
+                        seller: seller, tokens_amount: amount_tokens, eth_amount: eth_amount_wei
+                    }
+                );
         }
 
         // ToDo Checkpoint 2: Modify to return the amount of tokens per 1 ETH.
