@@ -59,8 +59,8 @@ pub mod Staker {
     ) {
         self.eth_token_dispatcher.write(IERC20CamelDispatcher { contract_address: eth_contract });
         self.external_contract_address.write(external_contract_address);
-        // Checkpoint 2
-        self.deadline.write(get_block_timestamp() + 60);
+        // Checkpoint 2 - Modified to 72 hours (3 days)
+        self.deadline.write(get_block_timestamp() + 259200);
     // ToDo Checkpoint 2: Set the deadline to 60 seconds from now. Implement your code here.
 
     }
