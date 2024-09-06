@@ -1,5 +1,5 @@
 # Speedrun Stark Campaign
-
+All challenge tests pass successfully, and the UI behaves as expected.\
 Each challenge is in a branch simulating the behaviour in the main repo. For easier access to the different branches click the following link:
 ## Challenge 0 - Simple NFT
 [Challenge 0](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-0-simple-nft)\
