@@ -1,14 +1,12 @@
 # Speedrun Stark Campaign Info
 
-Deployed contract addresses in Sepolia:
-
 ## YourToken
 YourToken: [0x00e6c2e9ab4f444a2469e7fabd21898440c13f314e92b8672988806c5c45ef18](https://voyager.online/contract/0x00e6c2e9ab4f444a2469e7fabd21898440c13f314e92b8672988806c5c45ef18)
 ## Vendor
 Vendor: [0x00aeec7a1e99bfdb25aadccba778f921654175d29609f9ff19aafb7d58f7fb54](https://voyager.online/contract/0x00aeec7a1e99bfdb25aadccba778f921654175d29609f9ff19aafb7d58f7fb54)
-
+## Website
 Deployed website: [Website](https://token-vendor-pi.vercel.app/)
-
+## Mainnet Wallet Address
 Mainnet wallet address: [0x05de88d79a1b46c483f3d35354441cd4e8f06384de977761e61db4858dda5156](https://voyager.online/contract/0x05de88d79a1b46c483f3d35354441cd4e8f06384de977761e61db4858dda5156)
 
 # 🚩 Challenge #2: 🏵 Token Vendor 🤖
