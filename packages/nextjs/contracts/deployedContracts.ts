@@ -874,7 +874,7 @@ const deployedContracts = {
   sepolia: {
     YourToken: {
       address:
-        "0x76c3171586118d53428342652da15e03e6d37f7d0bbaf7b19a24bb2f867176",
+        "0xe6c2e9ab4f444a2469e7fabd21898440c13f314e92b8672988806c5c45ef18",
       abi: [
         {
           type: "impl",
@@ -1174,11 +1174,11 @@ const deployedContracts = {
         },
       ],
       classHash:
-        "0x940ba155d095e24cc410bf634d1702adddd3ec84ebc4b059b413145e5132cd",
+        "0x7b7c1876a710fb183e87ab67522542c4d2ab4f8d2753181248d3eb3fb0a784",
     },
     Vendor: {
       address:
-        "0x98179a77763ab71d3849690178f2604a75b81c8e2c95377341730ab6e45a3f",
+        "0xaeec7a1e99bfdb25aadccba778f921654175d29609f9ff19aafb7d58f7fb54",
       abi: [
         {
           type: "impl",

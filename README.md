@@ -2,8 +2,10 @@
 
 Deployed contract addresses in Sepolia:
 
-YourToken: [0x0076c3171586118d53428342652da15e03e6d37f7d0bbaf7b19a24bb2f867176](https://voyager.online/contract/0x0076c3171586118d53428342652da15e03e6d37f7d0bbaf7b19a24bb2f867176)
-Vendor: [0x0098179a77763ab71d3849690178f2604a75b81c8e2c95377341730ab6e45a3f](https://voyager.online/contract/0x0098179a77763ab71d3849690178f2604a75b81c8e2c95377341730ab6e45a3f)
+## YourToken
+YourToken: [0x00e6c2e9ab4f444a2469e7fabd21898440c13f314e92b8672988806c5c45ef18](https://voyager.online/contract/0x00e6c2e9ab4f444a2469e7fabd21898440c13f314e92b8672988806c5c45ef18)
+## Vendor
+Vendor: [0x00aeec7a1e99bfdb25aadccba778f921654175d29609f9ff19aafb7d58f7fb54](https://voyager.online/contract/0x00aeec7a1e99bfdb25aadccba778f921654175d29609f9ff19aafb7d58f7fb54)
 
 Deployed website: [Website](https://token-vendor-pi.vercel.app/)
 

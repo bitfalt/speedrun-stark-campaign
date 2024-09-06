@@ -39,7 +39,7 @@ const transferScript = async (): Promise<void> => {
         calldata: [
           vendor.address,
           {
-            low: 1_000_000_000_000_000_000_000n, //1000 * 10^18
+            low: 2_000_000_000_000_000_000_000n, //2000 * 10^18
             high: 0,
           },
         ],
