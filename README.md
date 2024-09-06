@@ -1,17 +1,17 @@
 # Speedrun Stark Campaign
 
-Each challenge is a branch simulating the behaviour in the main repo. For easier access to the different branches click the following link:
+Each challenge is in a branch simulating the behaviour in the main repo. For easier access to the different branches click the following link:
 ## Challenge 0 - Simple NFT
-[Challenge 0](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-0-simple-nft)
+[Challenge 0](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-0-simple-nft)\
 [Challenge 0 Website Vercel](https://simple-nft-snowy-pi.vercel.app/)
 ## Challenge 1 - Decentralized Staking
-[Challenge 1](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-1-decentralized-staking)
+[Challenge 1](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-1-decentralized-staking)\
 [Challenge 1 Website Vercel](https://decentralized-staking-jade.vercel.app/)
 ## Challenge 2 - Token Vendor
-[Challenge 2](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-2-token-vendor)
+[Challenge 2](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-2-token-vendor)\
 [Challenge 2 Website Vercel](https://token-vendor-pi.vercel.app/)
 ## Challenge 3 - Dice Game
-[Challenge 3](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-3-dice-game)
+[Challenge 3](https://github.com/bitfalt/speedrun-stark-campaign/tree/challenge-3-dice-game)\
 [Challenge 3 Website Vercel](https://dice-game-eight-rho.vercel.app/)
 
 ## Mainnet Wallet Address
